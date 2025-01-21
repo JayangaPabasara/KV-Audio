@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import userRouter from "./route/userRoute.js";
 import productRouter from "./route/productRouter.js";
 import jwt, { decode } from "jsonwebtoken";
+import reviewRoute from "./route/reviewRoute.js";
 
 let app = express();
 
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
+app.use("/api/review", reviewRoute);
 
 app.listen(3000, () => {
   console.log("Server started at 3000");
