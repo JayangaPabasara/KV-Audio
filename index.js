@@ -5,14 +5,16 @@ import userRouter from "./route/userRoute.js";
 import productRouter from "./route/productRouter.js";
 import jwt, { decode } from "jsonwebtoken";
 import reviewRoute from "./route/reviewRoute.js";
+import dotenv from 'dotenv';
+
+dotenv.config(); //loard the env files
 
 let app = express();
 
 app.use(bodyParser.json());
 
 //database Connetions
-let dbUrl =
-  "mongodb+srv://jayangapabasara71:HKjBL3RWYLO1cFMJ@cluster0.ex7ii.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+let dbUrl = process.env.MONGO_URL;
 
 mongoose.connect(dbUrl);
 
@@ -28,7 +30,7 @@ app.use((req, res, next) => {
   if (token != null) {
     token = token.replace("Bearer ", "");
 
-    jwt.verify(token, "kv-secret-89", (err, decoded) => {
+    jwt.verify(token, process.env.SECRET_PW, (err, decoded) => {
       if (!err) {
         req.user = decoded;
       }
