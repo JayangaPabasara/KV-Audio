@@ -49,7 +49,9 @@ export function loginUser(req, res){
                     firstName : user.firstName,
                     lastName : user.lastName,
                     role : user.role,
-                    email : user.email
+                    email : user.email,
+                    profilePicuture : user.profilePicuture,
+                    phone: user.phone,
                 }, process.env.SECRET_PW);
                 res.json({
                         massage : "Login Successfull...!",

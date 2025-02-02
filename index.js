@@ -6,6 +6,7 @@ import productRouter from "./route/productRouter.js";
 import jwt, { decode } from "jsonwebtoken";
 import reviewRoute from "./route/reviewRoute.js";
 import dotenv from 'dotenv';
+import inquireRoute from "./route/inquireRoute.js";
 
 dotenv.config(); //loard the env files
 
@@ -42,7 +43,9 @@ app.use((req, res, next) => {
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/review", reviewRoute);
+app.use("/api/inquire", inquireRoute);
 
 app.listen(3000, () => {
   console.log("Server started at 3000");
 });
+
